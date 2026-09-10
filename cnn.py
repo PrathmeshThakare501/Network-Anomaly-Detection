@@ -17,7 +17,7 @@ BATCH_SIZE = 32
 
 
 def clean_data(data: pd.DataFrame) -> pd.DataFrame:
-    """Apply the preprocessing workflow used in the original CNN notebook."""
+    """Apply the preprocessing workflow used in the CNN."""
     data = data.drop_duplicates().copy()
 
     threshold = 1e12
@@ -57,7 +57,7 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_model(input_shape: tuple[int, int]) -> Sequential:
-    """Build the 1D CNN architecture used in the dissertation."""
+    """Build the 1D CNN architecture."""
     model = Sequential(
         [
             Input(shape=input_shape),
@@ -107,7 +107,7 @@ def main() -> None:
     ]
 
     X = data.drop(columns=selected_labels)
-    # The dissertation frames the task as benign vs anomalous classification.
+    # The frames the task as benign vs anomalous classification.
     # Label_BENIGN is retained as the binary target.
     y = data["Label_BENIGN"].astype(int)
 
