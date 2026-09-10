@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-"""GAN experiment for network anomaly detection on CICIDS 2017.
-
-This script preserves the original dissertation experiment flow while removing
-notebook-specific clutter and machine-specific paths.
+"""
+GAN experiment for network anomaly detection on CICIDS 2017.
 """
 
 from pathlib import Path
@@ -31,7 +29,7 @@ def set_seed(seed: int = RANDOM_STATE) -> None:
 
 
 def clean_data(data: pd.DataFrame) -> pd.DataFrame:
-    """Apply the preprocessing steps used in the dissertation experiment."""
+    """Apply the preprocessing steps used in the experiment."""
     data = data.drop_duplicates().copy()
 
     threshold = 1e12
@@ -72,7 +70,7 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
 
 
 class Generator(nn.Module):
-    """Generator network used in the dissertation GAN experiment."""
+    """Generator network used in the GAN experiment."""
 
     def __init__(self, input_dim: int):
         super().__init__()
@@ -101,7 +99,7 @@ class Generator(nn.Module):
 
 
 class Discriminator(nn.Module):
-    """Discriminator network used in the dissertation GAN experiment."""
+    """Discriminator network used in the GAN experiment."""
 
     def __init__(self, input_dim: int):
         super().__init__()
@@ -146,7 +144,7 @@ def main() -> None:
     X = data.drop(columns=label_columns)
     y = data["Label_BENIGN"]
 
-    # Preserve the original dissertation experiment flow.
+    # Preserve the origina experiment flow.
     smote = SMOTE(random_state=RANDOM_STATE)
     X_resampled, y_resampled = smote.fit_resample(X, y)
 
